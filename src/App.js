@@ -5,6 +5,8 @@ import {Layout} from './routes/Layout';
 import {Home} from './routes/Home'
 import {PokeDetails} from './routes/PokeDetails'
 
+import FavoritesProvider from '../FavoritesProvider';
+
 
 function App() {
   const router = createBrowserRouter([{
@@ -23,7 +25,9 @@ function App() {
   }]);
 
   return(
-    <RouterProvider router={router} />
+    <FavoritesProvider>
+      <RouterProvider router={router} />
+    </FavoritesProvider>
   );
 }
 
