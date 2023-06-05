@@ -20,6 +20,10 @@ function App() {
       {
         path: "/:name",
         element: <PokeDetails/>
+      },
+      {
+        path: "/favorites",
+        element: <p>favorites</p>
       }
     ],
   }]);
