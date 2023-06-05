@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import { Card, Button } from 'react-bootstrap';
 import loadingChimecho from '../../public/loadingChimecho.gif';
 import { Link } from 'react-router-dom';
+import { FavoritesContext } from '../../FavoritesProvider';
 
 function PokemonCard({ pokemon }) {
+  const {addFavorite} = useContext(FavoritesContext);
   const defaultPokeData = {
     data: { sprites: { front_default: '' } },
     loading: true,
@@ -70,6 +72,9 @@ function PokemonCard({ pokemon }) {
             })}
           </ul>
         </Card.Text>
+        <Button variant="primary" onClick={() => addFavorite(pokeData.name)} >
+          Add to Favorites
+        </Button>
       </Card.Body>
     </Card>
   );
