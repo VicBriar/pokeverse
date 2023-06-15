@@ -6,11 +6,12 @@ function FavoritesProvider({ children }) {
     const [favorites, setFavorites] = useState([]);
 
     function addFavorite(favorite) {
-        setFavorties([...favorites, favorite])
+        console.log("add fav was called with",favorite);
+        setFavorites([...favorites, favorite])
     }
 
     function removeFavorite(name) {
-        setFavorites.filter((favorite) => name != favorite)
+        setFavorites.filter((favorite) => favorite.name != favorite)
     }
 
     return (
