@@ -1,9 +1,10 @@
 import React from 'react';
-import {createBrowserRouter,RouterProvider} from 'react-router-dom';
+import {createBrowserRouter,RouterProvider, BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 import {Layout} from './routes/Layout';
 import {Home} from './routes/Home'
 import {PokeDetails} from './routes/PokeDetails'
+import { Favorites } from './routes/Favorites';
 
 import FavoritesProvider from '../FavoritesProvider';
 
@@ -23,7 +24,7 @@ function App() {
       },
       {
         path: "/favorites",
-        element: <p>favorites</p>
+        element: <Favorites />
       }
     ],
   }]);
