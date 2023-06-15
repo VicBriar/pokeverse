@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import { FavoritesContext } from '../../FavoritesProvider';
 
 function PokemonCard({ pokemon }) {
-  const {addFavorite} = useContext(FavoritesContext);
+  const {addFavorite, favorites} = useContext(FavoritesContext);
   const defaultPokeData = {
     data: { sprites: { front_default: '' } },
     loading: true,
+    favorite: false,
   };
   const [pokeData, setPokeData] = useState(defaultPokeData);
   const { name, url } = pokemon;
@@ -17,15 +18,31 @@ function PokemonCard({ pokemon }) {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setPokeData({ data: data, loading: false });
+      let favorite = isPokeFav({name,url});
+      setPokeData({ data: data, loading: false, favorite });
     } catch (error) {
       console.error(error.message);
     }
   }
+  function addPokeToFav () {
+    if(isPokeFav({name,url})){
+      return;
+    }
+    return addFavorite({name, url})
+  }
+  function isPokeFav () {
+    let result = false;
+    favorites.map((pokemon) => {
+      if (pokemon.name === name && pokemon.url === url) {
+        result = true;
+      }
+    });
+    return result;
+  }
 
   useEffect(() => {
     getPokemon();
-  }, [url]);
+  }, [url,favorites]);
 
   if (pokeData.loading) {
     return (
@@ -72,7 +89,9 @@ function PokemonCard({ pokemon }) {
             })}
           </ul>
         </Card.Text>
-        <Button variant="primary" onClick={() => addFavorite(pokeData.name)} >
+        <Button
+          variant={pokeData.favorite ? "secondary" : "primary"  }
+          onClick={() => {addPokeToFav()}} >
           Add to Favorites
         </Button>
       </Card.Body>
