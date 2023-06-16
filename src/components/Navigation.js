@@ -15,7 +15,10 @@ function Navigation() {
           Pokeverse
         </Navbar.Brand>
         <Nav className='me-auto'>
-          <Nav.Link href='/' as={Link}>All Pokemon</Nav.Link>
+          <Link to="/" className="nav-link">All Pokemon</Link>
+          <Link to="/favorites" className="nav-link">My Deck</Link>
+          {/* <Nav.Link href='/' as={Link}>All Pokemon</Nav.Link>
+          <Nav.Link href='/favorites' as={Link}>My Deck</Nav.Link> */}
         </Nav>
       </Container>
     </Navbar>

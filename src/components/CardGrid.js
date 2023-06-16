@@ -4,7 +4,7 @@ import { PokemonCard } from './PokemonCard';
 import { Search } from './Search';
 
 
-export function CardGrid ({data}) {
+export function CardGrid ({data, noSearch}) {
 
     // const [cardGridState, setCardGridState] = useState({data:data, query:""}); 
     const [filtered, setFiltered] = useState([]);
@@ -38,7 +38,7 @@ export function CardGrid ({data}) {
 return (
 <>
     <Container>
-        <Search query={query} handleTyping={handleTyping} />
+        {noSearch ? "" : <Search query={query} handleTyping={handleTyping} />}
         <Row xs={2} md={6} lg={10}>
         {
             filtered.map((pokemon, indx) => {
